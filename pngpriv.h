@@ -189,6 +189,16 @@
 #     define PNG_ARM_NEON_IMPLEMENTATION 0
 #endif /* PNG_ARM_NEON_OPT > 0 */
 
+//+DOGOT
+// Emscripten doesn't use a specific CPU.
+#ifdef EMSCRIPTEN
+#  define PNG_INTEL_SSE_OPT 0
+#  define PNG_MIPS_MSA_OPT 0
+#  define PNG_POWERPC_VSX_OPT 0
+#  define PNG_INTEL_SSE_IMPLEMENTATION 0
+#endif
+//-DOGOT
+
 #ifndef PNG_MIPS_MSA_OPT
 #  if defined(__mips_msa) && (__mips_isa_rev >= 5) && defined(PNG_ALIGNED_MEMORY_SUPPORTED)
 #     define PNG_MIPS_MSA_OPT 2
